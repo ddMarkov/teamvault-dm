@@ -4,6 +4,10 @@ on:
   release:
     types: [ created ]
 
+permissions:
+  contents: write
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -43,8 +47,6 @@ jobs:
       - build
     runs-on: ubuntu-latest
     environment: pypi
-    permissions:
-      id-token: write
     steps:
       - uses: actions/checkout@v4
 
@@ -63,7 +65,6 @@ jobs:
           echo "wheel=$full_path"        >> "$GITHUB_OUTPUT"
           echo "wheel_name=$(basename "$full_path")" >> "$GITHUB_OUTPUT"
 
-      # ── Upload that wheel to the Release ─────────────────
       - name: Upload wheel to Release
         uses: actions/upload-release-asset@v1
         env:
