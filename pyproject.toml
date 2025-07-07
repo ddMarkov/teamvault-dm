@@ -3,7 +3,7 @@ requires = ["uv_build>=0.6,<0.7"]
 build-backend = "uv_build"
 
 [project]
-name = "teamvault"
+name = "teamvault-test"
 description = "Keep your passwords behind the firewall"
 readme = "README.md"
 license-files = ["LICENSE"]
