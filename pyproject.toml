@@ -72,3 +72,6 @@ source-include = [
 
 [tool.uv.sources]
 teamvault = { workspace = true }
+
+[tool.setuptools.packages.find]
+where = ["teamvault"]
