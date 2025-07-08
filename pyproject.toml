@@ -3,7 +3,7 @@ requires = ["uv_build>=0.6,<0.7"]
 build-backend = "uv_build"
 
 [project]
-name = "teamvault-test"
+name = "teamvault"
 description = "Keep your passwords behind the firewall"
 readme = "README.md"
 license-files = ["LICENSE"]
@@ -66,12 +66,9 @@ package = true
 [tool.uv.build-backend]
 module-root = ""
 source-include = [
-    "CHANGELOG.md",
-    "MANIFEST.in",
+  "CHANGELOG.md",
+  "MANIFEST.in",
 ]
 
 [tool.uv.sources]
 teamvault = { workspace = true }
-
-[tool.setuptools.packages.find]
-where = ["teamvault"]
