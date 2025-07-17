@@ -78,7 +78,7 @@ jobs:
 
       - name: Publish package distribution to PyPi with uv
         run: |
-          uv publish --trusted-publishing always --index index
+          uv publish --trusted-publishing always --index testpypi
       - name: Upload wheel to GitHub Release
         uses: actions/upload-release-asset@v1
         env:
