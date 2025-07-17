@@ -9,7 +9,11 @@ jobs:
     steps:
 
       - run: |
-          apt-get install libffi-dev libldap2-dev libpq-dev libsasl2-dev python3.X-dev postgresql-contrib
+          sudo apt-get update
+          sudo apt-get install -y \
+          libffi-dev libldap2-dev libpq-dev libsasl2-dev \
+          python3-dev postgresql-contrib
+
 
       - uses: actions/checkout@v4
 
