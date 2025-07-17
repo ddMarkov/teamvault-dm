@@ -71,14 +71,14 @@ jobs:
       - name: Build wheel
         id: wheel
         run: |
-          uv build --no-sources --clean
+          uv build --no-sources
           WHEEL_PATH=$(realpath dist/*.whl)
           echo "wheel=$WHEEL_PATH" >> "$GITHUB_OUTPUT"
           echo "wheel_name=$(basename "$WHEEL_PATH")" >> "$GITHUB_OUTPUT"
 
       - name: Publish package distribution to PyPi with uv
         run: |
-          uv publish --trusted-publishing always --index testpypi
+          uv publish --trusted-publishing always --index testpypi–
       - name: Upload wheel to GitHub Release
         uses: actions/upload-release-asset@v1
         env:
