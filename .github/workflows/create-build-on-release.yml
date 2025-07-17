@@ -71,7 +71,7 @@ jobs:
       - name: Build wheel
         id: wheel
         run: |
-          uv build --no-sources
+          uv build --no-sources --clean
           WHEEL_PATH=$(realpath dist/*.whl)
           echo "wheel=$WHEEL_PATH" >> "$GITHUB_OUTPUT"
           echo "wheel_name=$(basename "$WHEEL_PATH")" >> "$GITHUB_OUTPUT"
