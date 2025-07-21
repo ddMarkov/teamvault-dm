@@ -33,4 +33,4 @@ jobs:
       - name: Run Tests
         working-directory: ${{ github.workspace }}/teamvault
         run: |
-          .venv/bin/python manage.py test
+          ../.venv/bin/python manage.py test
