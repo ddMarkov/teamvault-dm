@@ -26,7 +26,7 @@ jobs:
         uses: astral-sh/setup-uv@v5
 
       - name: Install dependencies
-        working-directory: ${{ github.workspace }}/teamvault
+        working-directory: ${{ github.workspace }}
         run: |
           uv sync 
 
