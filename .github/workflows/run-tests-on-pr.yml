@@ -31,6 +31,6 @@ jobs:
           uv sync 
 
       - name: Run Tests
-        working-directory: ${{ github.workspace }}/teamvault
+        working-directory: ${{ github.workspace }}
         run: |
-          python manage.py test
+          .venv/bin/python manage.py test
