@@ -23,10 +23,10 @@ jobs:
           python-version: "3.12"
 
       - name: Set Up uv
-        working-directory: ${{ github.workspace }}/teamvault
         uses: astral-sh/setup-uv@v5
 
       - name: Install dependencies
+        working-directory: ${{ github.workspace }}/teamvault
         run: |
           uv sync 
 
