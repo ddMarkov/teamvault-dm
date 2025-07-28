@@ -21,8 +21,8 @@ jobs:
         image: postgres:17
         env:
           POSTGRES_DB: teamvault
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: teamvault
+          POSTGRES_PASSWORD: teamvault
         ports:
           - 5432:5432
         options: >-
@@ -50,7 +50,6 @@ jobs:
       - name: Set Up uv
         uses: astral-sh/setup-uv@v5
 
-      # Install TeamVault from source because the latest PyPI release (0.9.2 as of 2025-07-28) isn’t yet Python 3.12-compatible
       - name: Install dependencies
         working-directory: ${{ github.workspace }}
         run: |
