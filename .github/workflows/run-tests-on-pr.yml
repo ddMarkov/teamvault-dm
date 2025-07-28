@@ -12,8 +12,8 @@ jobs:
       DATABASE_URL: postgres://postgres:postgres@localhost:5432/teamvault
       PGHOST: localhost
       PGPORT: 5432
-      PGUSER: postgres
-      PGPASSWORD: postgres
+      PGUSER: teamvault
+      PGPASSWORD: teamvault
       PGDATABASE: teamvault
 
     services:
