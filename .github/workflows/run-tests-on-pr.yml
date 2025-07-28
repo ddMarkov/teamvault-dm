@@ -25,10 +25,11 @@ jobs:
       - name: Set Up uv
         uses: astral-sh/setup-uv@v5
 
+      # Install TeamVault from source because the latest PyPI release (0.9.2 as of 2025-07-28) isn’t yet Python 3.12-compatible
       - name: Install dependencies
         working-directory: ${{ github.workspace }}
         run: |
-          uv sync && uv pip install teamvault
+          uv sync && uv pip install -e .
 
       - name: Activate venv for later steps
         shell: bash
