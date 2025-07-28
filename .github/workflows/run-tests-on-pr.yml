@@ -66,6 +66,11 @@ jobs:
         run: |
           teamvault setup
 
+      - name: Cat teamvault.cfg
+        working-directory: ${{ github.workspace }}
+        run: |
+          cat $TEAMVAULT_CONFIG_FILE
+
       - name: Run Tests
         working-directory: ${{ github.workspace }}/teamvault
         run: |
