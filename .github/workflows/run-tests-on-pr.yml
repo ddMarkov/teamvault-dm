@@ -10,11 +10,7 @@ jobs:
     env:
       TEAMVAULT_CONFIG_FILE: ${{ github.workspace }}/teamvault.cfg
       DATABASE_URL: postgres://postgres:postgres@localhost:5432/teamvault
-      PGHOST: localhost
       PGPORT: 5432
-      PGUSER: teamvault
-      PGPASSWORD: teamvault
-      PGDATABASE: teamvault
 
     services:
       postgres:
