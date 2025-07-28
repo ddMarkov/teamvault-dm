@@ -6,6 +6,8 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    env:
+      TEAMVAULT_CONFIG_FILE: ${{ github.workspace }}/teamvault.cfg
     steps:
 
       - run: |
@@ -39,7 +41,6 @@ jobs:
       - name: Set Up TeamVault Config File
         working-directory: ${{ github.workspace }}
         run: |
-          export TEAMVAULT_CONFIG_FILE="${GITHUB_WORKSPACE}/teamvault.cfg"
           teamvault setup
 
       - name: Run Tests
