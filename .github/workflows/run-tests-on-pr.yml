@@ -30,6 +30,11 @@ jobs:
         run: |
           uv sync && uv pip install teamvault
 
+      - name: Activate venv for later steps
+        shell: bash
+        run: |
+          echo "${{ github.workspace }}/.venv/bin" >> "$GITHUB_PATH"
+
       - name: Set Up TeamVault Config File
         working-directory: ${{ github.workspace }}
         run: |
@@ -38,4 +43,4 @@ jobs:
       - name: Run Tests
         working-directory: ${{ github.workspace }}/teamvault
         run: |
-          ../.venv/bin/python manage.py test
+          python manage.py test
