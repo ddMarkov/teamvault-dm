@@ -6,10 +6,33 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+
     env:
       TEAMVAULT_CONFIG_FILE: ${{ github.workspace }}/teamvault.cfg
-    steps:
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/teamvault
+      PGHOST: localhost
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: teamvault
 
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: teamvault
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          
+
+    steps:
       - run: |
           sudo apt-get update
           sudo apt-get install -y \
