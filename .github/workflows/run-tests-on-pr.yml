@@ -1,0 +1,73 @@
+name: Run Django Tests on PR
+
+on:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    env:
+      TEAMVAULT_CONFIG_FILE: ${{ github.workspace }}/teamvault.cfg
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/teamvault
+      PGPORT: 5432
+
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: teamvault
+          POSTGRES_USER: teamvault
+          POSTGRES_PASSWORD: teamvault
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          
+
+    steps:
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+
+          
+
+
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set Up uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        working-directory: ${{ github.workspace }}
+        run: |
+          uv sync && uv pip install -e .
+
+      - name: Activate venv for later steps
+        shell: bash
+        run: |
+          echo "${{ github.workspace }}/.venv/bin" >> "$GITHUB_PATH"
+
+      - name: Set Up TeamVault Config File
+        working-directory: ${{ github.workspace }}
+        run: |
+          teamvault setup
+
+      # Debugging purposes
+      - name: Cat teamvault.cfg
+        working-directory: ${{ github.workspace }}
+        run: |
+          cat $TEAMVAULT_CONFIG_FILE
+
+      - name: Run Tests
+        working-directory: ${{ github.workspace }}/teamvault
+        run: |
+          python manage.py test
