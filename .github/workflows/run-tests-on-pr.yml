@@ -33,6 +33,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
           python3-dev postgresql-contrib
+          apt list --installed | grep libffi-dev
+
+          
 
 
       - uses: actions/checkout@v4
