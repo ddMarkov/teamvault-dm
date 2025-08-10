@@ -29,6 +29,14 @@ jobs:
     
 
     steps:
+      - name: Cache APT packages
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/apt/archives
+          key: apt-${{ runner.os }}-${{ hashFiles('.github/apt-packages.txt') }}
+          restore-keys: |
+            apt-${{ runner.os }}-
+
       - run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -49,6 +57,21 @@ jobs:
 
       - name: Set Up uv
         uses: astral-sh/setup-uv@v5
+        with:
+          cache: true
+          cache-dependency-glob: |
+            **/uv.lock
+            **/pyproject.toml
+
+      - name: Cache uv + venv
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/uv    
+            .venv
+          key: uv-venv-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/uv.lock', '**/pyproject.toml') }}
+          restore-keys: |
+            uv-venv-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-
 
       - name: Install dependencies
         working-directory: ${{ github.workspace }}
