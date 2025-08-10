@@ -26,13 +26,19 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-          
+    
 
     steps:
       - run: |
           sudo apt-get update
           sudo apt-get install -y \
-          libldap2-dev python-ldap
+          build-essential \
+          libffi-dev \
+          libldap2-dev \
+          libpq-dev \
+          libsasl2-dev \
+          python3-dev \
+          postgresql-contrib
 
       - uses: actions/checkout@v4
 
